@@ -1,4 +1,4 @@
-name: sandbox:deploy
+name: deploy:development
 
 on: [push]
 #   push:
@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: order with single item (nodejs ${{ matrix.node-version }})
+      - name: Test order with single item (nodejs ${{ matrix.node-version }})
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
@@ -37,9 +37,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: order with multiple items (nodejs ${{ matrix.node-version }})
+      - name: Test order with multiple items (nodejs ${{ matrix.node-version }})
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - run: npm ci && test:order:multiple:items
+      - run: npm ci && npm run test:order:multiple:items
