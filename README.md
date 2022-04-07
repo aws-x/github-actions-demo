@@ -1,3 +1,5 @@
 # github-workflow-nodejs-tests
 
-Code for this [video](https://youtu.be/9KVCxMrshIk).
+![example workflow](https://github.com/aws-x/github-actions-demo/actions/workflows/node.js.yml/badge.svg)
+
+<!--Code for this [video](https://youtu.be/9KVCxMrshIk).-->
