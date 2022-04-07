@@ -2,7 +2,8 @@ const unirest = require('unirest');
 const { describe, test, expect } = require('@jest/globals');
 
 describe('test lambda function', () => {
-    const url = 'https://jsonplaceholder.typicode.com/todos/2';
+    require('dotenv').config();
+    const url = `${process.env.AWS_ENDPOINT}/todos/2`;
     const promise = unirest.get(url);
 
     test('toBeInstanceOf Object', async () => {
@@ -12,6 +13,7 @@ describe('test lambda function', () => {
     });
 
     test('toMatchObject response', async () => {
+        console.log('process.env.AWS_ENDPOINT', process.env.AWS_ENDPOINT);
         const Request = await promise;
         const { body } = Request;
         const expected = { completed: false };

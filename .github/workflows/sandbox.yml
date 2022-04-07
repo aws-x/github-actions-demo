@@ -1,12 +1,13 @@
 name: sandbox:deploy
 
-# on:
+on: [push]
 #   push:
 #     branches: [main]
 #   pull_request:
 #     branches: [main]
 
-on: [push]
+env:
+  AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
 
 jobs:
   build:
