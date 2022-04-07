@@ -10,7 +10,7 @@ env:
   AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
 
 jobs:
-  build:
+  order-single-item:
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,9 +20,26 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: order with single item (nodejs ${{ matrix.node-version }})
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - run: npm ci && npm test
+      - run: npm ci && npm run test:order:single:item
+
+  order-multiple-items:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: order with multiple items (nodejs ${{ matrix.node-version }})
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci && test:order:multiple:items

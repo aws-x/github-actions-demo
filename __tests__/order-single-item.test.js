@@ -1,7 +1,7 @@
 const unirest = require('unirest');
 const { describe, test, expect } = require('@jest/globals');
 
-describe('test lambda function', () => {
+describe('Test order with a single item', () => {
     require('dotenv').config();
     const url = `${process.env.AWS_ENDPOINT}/todos/2`;
     const promise = unirest.get(url);
