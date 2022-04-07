@@ -1,15 +1,21 @@
-const myBeverage = {
-    delicious: true,
-    sour: false,
-};
+const unirest = require('unirest');
+const { describe, test, expect } = require('@jest/globals');
 
-describe('my beverage', () => {
-    test('is delicious', () => {
-        expect(myBeverage.delicious).toBeTruthy();
+describe('test lambda function', () => {
+    const url = 'https://jsonplaceholder.typicode.com/todos/2';
+    const promise = unirest.get(url);
+
+    test('toBeInstanceOf Object', async () => {
+        const Request = await promise;
+        const { body } = Request;
+        expect(body).toBeInstanceOf(Object);
     });
 
-    test('is not sour', () => {
-        expect(myBeverage.sour).toBeFalsy();
+    test('toMatchObject response', async () => {
+        const Request = await promise;
+        const { body } = Request;
+        const expected = { completed: false };
+        expect(body).toMatchObject(expected);
     });
 });
 
